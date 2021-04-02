@@ -116,17 +116,17 @@ button {
 
 
 
-#deaths {
+#mortes {
   color: crimson;
   padding: 10px;
 }
 
-#cases {
+#casos {
   color: rgb(255, 175, 1);
   padding: 10px;
 }
 
-#recovered {
+#curados {
   color: rgb(76, 169, 23);
   padding: 10px;
 }
@@ -534,7 +534,7 @@ hr {
   transition: color 0.2s;
 }
 .footer .about-company a:hover {
-  color: #0f0e0e;
+  color: #c00909;
 }
 .footer .location i {
   font-size: 18px;
