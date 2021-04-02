@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script
+      src="https://kit.fontawesome.com/42575f5eb5.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="ChartJS/Chart.js"></script>
+    <link href="ChartJS/Chart.css" type="text/css" rel="stylesheet" />
+
+    <link href="stylesheet.css" rel="stylesheet" type="text/css" />
+
+    <title>Projeto COVID-19</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <header class="pt-5">
+            <h1>
+              <i class="fas fa-virus fa-1x mr-3 fa-pulse"></i>COVID-19
+            </h1>
+            <p class="mb-5">
+                Acompanhe a pandemia no Brasil
+            </p>
+            <span class="float-right">
+              <div class="dark-mode-switch text-center">
+                <p>Modo Escuro</p>
+                <label class="switch">
+                  <input type="checkbox" id="switch" onchange="switchDarkMode()" />
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <i id="last-update"></i>
+            </span>
+            <br />
+            <hr />
+          </header>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div id="form">
+            <h3 class="pb-3">Estados</h3>
+            <select
+              id="mainSelector"
+              class="custom-select sources"
+              name="NameOfCountry"
+            >
+              <option value="AC">Acre</option>
+              <option value="AL">Alagoas</option>
+              <option value="AP">Amapá</option>
+              <option value="AM">Amazonas</option>
+              <option value="BA">Bahia</option>
+              <option value="CE">Ceará</option>
+              <option value="DF">Distrito Federal</option>
+              <option value="ES">Espírito Santo</option>
+              <option value="GO">Goiás</option>
+              <option value="MA">Maranhão</option>
+              <option value="MT">Mato Grosso</option>
+              <option value="MS">Mato Grosso do Sul</option>
+              <option value="MG">Minas Gerais</option>
+              <option value="PA">Pará</option>
+              <option value="PB">Paraíba</option>
+              <option value="PR">Paraná</option>
+              <option value="PE">Pernambuco</option>
+              <option value="PI">Piauí</option>
+              <option value="RJ">Rio de Janeiro</option>
+              <option value="RN">Rio Grande do Norte</option>
+              <option value="RS">Rio Grande do Sul</option>
+              <option value="RO">Rondônia</option>
+              <option value="RR">Roraima</option>
+              <option value="SC">Santa Catarina</option>
+              <option value="SP">São Paulo</option>
+              <option value="SE">Sergipe</option>
+              <option value="TO">Tocantins</option>
+            
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-12 col-md-4 d-flex align-items-stretch mt-3">
+          <div class="card w-100">
+            <div
+              class="d-flex flex-column justify-content-center align-items-center card-body"
+            >
+              <h2 class="text-center">Curados</h2>
+              <i class="fas fa-heart fa-3x faa-float animated"></i>
+              <h3 class="mb-0" id="recovered">-</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4 d-flex align-items-stretch mt-3">
+          <div class="card w-100">
+            <div
+              class="d-flex flex-column justify-content-center align-items-center card-body"
+            >
+              <h2 class="text-center">Casos Recentes</h2>
+              <i class="fas fa-virus fa-3x faa-float animated"></i>
+              <h3 class="mb-0" id="cases">-</h3>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-12 col-md-4 mb-5 mb-md-0 d-flex align-items-stretch mt-3"
+        >
+          <div class="card w-100">
+            <div
+              class="d-flex flex-column justify-content-center align-items-center card-body"
+            >
+              <h2 class="text-center">Mortes Atuais</h2>
+              <i class="fas fa-skull-crossbones fa-3x faa-float animated"></i>
+              <h3 class="mb-0" id="deaths">-</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+          <h2>FIQUE EM CASA!</h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-5 col-sm-12 col-md-12" id="predictions">
+          <div class="col-12 box">
+            <h3>Veja a Vacinação</h3>
+          </div>
+          <div class="col-12 box">
+            <h3>...</h3>
+          </div>
+          <div class="col-12 box">
+            <h3>...</h3>
+          </div>
+        </div>
+        <div class="col-lg-7 col-sm-12 col-md-12">
+          <div class="col-12 boxBlue">
+            <canvas id="myChart" width="100%" height="60vh"></canvas>
+          </div>
+          <div class="col-12 boxBlue">
+            <canvas id="myChart2" width="100%" height="60vh"></canvas>
+          </div>
+          <hr />
+          <div class="col-12" style="height: 500px">
+            <!-- <a
+              class="twitter-timeline"
+              data-height="500"
+              href="https://twitter.com/WHO?ref_src=twsrc%5Etfw"
+              >Tweets by WHO</a
+            >
+            <script
+              async
+              src="https://platform.twitter.com/widgets.js"
+              charset="utf-8"
+            ></script>
+            --> 
+          </div>
+          <div class="col-12" style="height: 55%">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+
+  <footer>
+    <div class="mt-5 pt-5 pb-5 footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5 col-xs-12 about-company">
+            <h2>Sobre este projeto</h2>
+            <p>
+               Todos os dados do COVID-19 são fornecidos pela
+              (<a href="Painel Coronavírus" target="new"
+                >https://covid.saude.gov.br/</a
+              >) <br>O código-fonte deste site pode ser encontrado no github
+              <a
+                href="https://github.com/danieljcode/COVID-19tracker"
+                target="new"
+                >aqui</a
+              >.
+            </p>
+          </div>
+          <div class="col-lg-3 col-xs-12 links"></div>
+          <div class="col-lg-4 col-xs-12 location">
+            <h4 class="mt-lg-0 mt-sm-4">Projeto Disponível em:</h4>
+            <p>
+                <a href="https://github.com/Romulo-Filipe-Rodrigues-dos-Reis/Projeto-covid-19"
+                >https://github.com/Romulo-Filipe-Rodrigues-dos-Reis/Projeto-covid-19</a>
+            </p>
+            <p>
+                <i class="fa fa-envelope-o mr-3"></i>
+                <a href="https://linkedin.com/in/sdexpressbrasil" style="color: rgb(0, 98, 226)">meu linkedIn</a>
+            </p>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col copyright">
+            <p class="">
+              <small class="text-white-50"
+                >Projeto de código aberto sob a licença pública GNU V3.0</small
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</html>
