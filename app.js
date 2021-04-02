@@ -4,7 +4,6 @@ const switchDarkMode = () =>
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(async function () {
     await $.get(
-      "https://ipinfo.io",
       function (response) {
         countryCode = response.country;
         timezone = response.timezone;
